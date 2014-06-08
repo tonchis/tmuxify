@@ -29,7 +29,7 @@ cat $layout | while read line; do
 
   tmux select-layout -t $session:$window tiled > /dev/null
 
-  tmux send-keys -t $session:$window.$pane "$cmd" C-m
+  tmux send-keys -t $session:$window.$pane "cd `pwd`; $cmd" C-m
 done
 
 # The first window is never used. The specified window names in the layout create new windows.
