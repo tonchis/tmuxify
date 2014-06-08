@@ -38,3 +38,5 @@ done
 #   set-option -g renumber-windows on
 #
 tmux kill-window -t $session:1
+
+tmux attach-session -t $session
