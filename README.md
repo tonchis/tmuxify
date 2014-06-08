@@ -35,7 +35,18 @@ You get the idea. Go crazy.
 4. The specified window names in the layout create new windows, so the first one is never used.
 Closing the first window will not renumber the existing ones. To fix that, add the following option in ~/.tmux.conf
 
-    set-option -g renumber-windows on
+
+        set-option -g renumber-windows on
+
+### Installation
+
+You just need to place `bin/tmuxify` in your `PATH`. Here's a oneliner.
+
+```shell
+$ wget https://raw.githubusercontent.com/tonchis/tmuxify/master/bin/tmuxify && chmod +x tmuxify && sudo mv tmuxify /usr/local/bin
+```
+
+The future may hold a `brew tap` for this.
 
 ### Why?
 
