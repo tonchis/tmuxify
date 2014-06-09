@@ -10,7 +10,7 @@ You will need to create a `.tmuxify.layout` file in the root of your project and
 
 ### The `.tmuxify.layout` file
 
-Each line of in this file tells `tmuxify` what to run, in what window and pane. It uses the following format
+Each line of this file tells `tmuxify` what to run, in what window and pane. It uses the following format
 
     window-name|pane-number|command
 
@@ -31,7 +31,7 @@ You get the idea. Go crazy.
 
 1. The `.tmuxify.layout` file will need a `pane-number` even if the window has only one, like the `vim` example up there.
 2. All the `commands` will `cd` to the directory where the `.tmuxify.layout` file is in.
-3. The layout for the panes is always tiled.
+3. The pane layout is always tiled.
 4. The specified window names in the layout create new windows, so the first one is never used.
 Closing the first window will not renumber the existing ones. To fix that, add the following option in ~/.tmux.conf
 
