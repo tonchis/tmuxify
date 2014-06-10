@@ -14,11 +14,7 @@ fi
 
 tmux new-session -s $session -d
 
-cat $layout | while read line; do
-  window=$(echo $line | awk -F '|' '{ print $1 }')
-  pane=$(echo $line | awk -F '|' '{ print $2 }')
-  cmd=$(echo $line | awk -F '|' '{ print $3 }')
-
+cat $layout | while read window pane command; do
   if [[ -z $(tmux list-windows -t $session | grep "$window") ]]; then
     tmux new-window -t $session -n $window
   fi
@@ -29,7 +25,7 @@ cat $layout | while read line; do
 
   tmux select-layout -t $session:$window tiled > /dev/null
 
-  tmux send-keys -t $session:$window.$pane "cd `pwd`; $cmd" C-m
+  tmux send-keys -t $session:$window.$pane "cd `pwd`; $command" C-m
 done
 
 # The first window is never used. The specified window names in the layout create new windows.

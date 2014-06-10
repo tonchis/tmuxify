@@ -12,18 +12,20 @@ You will need to create a `.tmuxify.layout` file in the root of your project and
 
 Each line of this file tells `tmuxify` what to run, in what window and pane. It uses the following format
 
-    window-name|pane-number|command
+    window-name pane-number command
+
+Yes, separated by a single space. Everything after the `pane-number` will be treated as part of the `command`.
 
 Say I need two windows, one for `git` and one for `vim`, then my `.tmuxify.layout` file would look like:
 
-    git|1|git pull
-    vim|1|vim
+    git 1 git pull
+    vim 1 vim
 
 Now I want the `git` window to have a pane with a `rack` server running.
 
-    git|1|git pull
-    git|2|rackup -p 8080
-    vim|1|vim
+    git 1 git pull
+    git 2 rackup -p 8080
+    vim 1 vim
 
 You get the idea. Go crazy.
 
