@@ -14,19 +14,27 @@ fi
 
 tmux new-session -s $session -d
 
-cat $layout | while read window pane command; do
+while read window pane command; do
+  pane_number=${pane//[^0-9]*}
+  active=${pane//[^*]}
+
+  if [[ -n $active ]]; then
+    active_window=$window
+    active_pane=$pane_number
+  fi
+
   if [[ -z $(tmux list-windows -t $session | grep "$window") ]]; then
     tmux new-window -t $session -n $window
   fi
 
-  if [[ -z $(tmux list-panes -t $session:$window | grep "$pane:") ]]; then
+  if [[ -z $(tmux list-panes -t $session:$window | grep "$pane_number:") ]]; then
     tmux split-window -t $session:$window
   fi
 
   tmux select-layout -t $session:$window tiled > /dev/null
 
-  tmux send-keys -t $session:$window.$pane "cd `pwd`; $command" C-m
-done
+  tmux send-keys -t $session:$window.$pane_number "cd `pwd`; $command" C-m
+done < $layout
 
 # The first window is never used. The specified window names in the layout create new windows.
 # Closing the first window will not renumber the existing ones. To fix that, add the following option in ~/.tmux.conf
@@ -34,5 +42,9 @@ done
 #   set-option -g renumber-windows on
 #
 tmux kill-window -t $session:1
+
+tmux select-window -t $session:$active_window
+
+tmux select-pane -t $session:$active_window.$active_pane
 
 tmux attach-session -t $session

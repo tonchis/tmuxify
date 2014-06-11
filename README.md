@@ -27,16 +27,20 @@ Now I want the `git` window to have a pane with a `rack` server running.
     git 2 rackup -p 8080
     vim 1 vim
 
-You get the idea. Go crazy.
+Get the idea? Go crazy.
+
+You can also select which pane will have focus after attaching the session by adding a `*` after the `pane-number`
+
+    git 1* git pull
+    git 2 rackup -p 8080
+    vim 1 vim
 
 ### Caveats
 
 1. The `.tmuxify.layout` file will need a `pane-number` even if the window has only one, like the `vim` example up there.
 2. All the `commands` will `cd` to the directory where the `.tmuxify.layout` file is in.
 3. The pane layout is always tiled.
-4. The specified window names in the layout create new windows, so the first one is never used.
-Closing the first window will not renumber the existing ones. To fix that, add the following option in ~/.tmux.conf
-
+4. The specified window names in the layout create new windows, so the first one is never used. Closing the first window will not renumber the existing ones. To fix that, add the following option in `~/.tmux.conf`
 
         set-option -g renumber-windows on
 
@@ -53,3 +57,7 @@ The future may hold a `brew tap` for this.
 ### Why?
 
 I love `tmux` and the automation that `tmuxinator` offers to speed up my development, yet I find that needing Ruby and YAML is a bit cumbersome, given the powerful CLI tools that `tmux` offers.
+
+### Thanks
+
+To [inkel](https://github.com/inkel) and [djanowski](https://github.com/djanowski) for all their feedback :D
