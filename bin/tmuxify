@@ -21,7 +21,7 @@ while read window pane command; do
   fi
 
   if [[ -z $(tmux list-windows -t $session | grep "$window") ]]; then
-    tmux new-window -t $session -n $window
+    tmux new-window -t $session -n $window -c `pwd`
   fi
 
   if [[ -z $(tmux list-panes -t $session:$window | grep "$pane_number:") ]]; then
@@ -30,7 +30,7 @@ while read window pane command; do
 
   tmux select-layout -t $session:$window tiled > /dev/null
 
-  tmux send-keys -t $session:$window.$pane_number "cd `pwd`; $command" C-m
+  tmux send-keys -t $session:$window.$pane_number "$command" C-m
 done < $layout
 
 # The first window is never used. The specified window names in the layout create new windows.
