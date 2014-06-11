@@ -7,7 +7,7 @@ if [[ ! -f $layout ]]; then
   exit 1
 fi
 
-session=${1:-`pwd | sed -E "s/^.*\/(.*)$/\\1/"`}
+session=${1:-$(basename $(pwd))}
 
 tmux new-session -s $session -d
 
