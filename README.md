@@ -46,13 +46,17 @@ You can also select which pane will have focus after attaching the session by ad
 
 ### Installation
 
-You just need to place `bin/tmuxify` in your `PATH`. Here's a oneliner.
+With Homebrew
+
+```shell
+brew tap tonchis/goodies && brew update && brew install tmuxify
+```
+
+Or standalone. Here's a oneliner.
 
 ```shell
 $ wget https://raw.githubusercontent.com/tonchis/tmuxify/master/bin/tmuxify && chmod +x tmuxify && sudo mv tmuxify /usr/local/bin
 ```
-
-The future may hold a `brew tap` for this.
 
 ### Why?
 
