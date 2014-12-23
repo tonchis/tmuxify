@@ -49,7 +49,7 @@ You can also select which pane will have focus after attaching the session by ad
 With Homebrew
 
 ```shell
-brew tap tonchis/goodies && brew update && brew install tmuxify
+brew tap tonchis/goodies && brew install tmuxify
 ```
 
 Or standalone. Here's a oneliner.
