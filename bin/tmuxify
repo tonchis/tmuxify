@@ -9,7 +9,12 @@ fi
 
 session=${1:-$(basename $PWD | tr . -)}
 
-tmux $TMUX_OPTS new-session -s $session -d
+if [[ -z $(tmux ls 2>/dev/null | grep "$session") ]]; then
+  tmux $TMUX_OPTS new-session -s $session -d
+else
+  tmux $TMUX_OPTS attach -t $session
+  exit 0
+fi
 
 while read window pane command; do
   pane_number=${pane//[^0-9]*}
