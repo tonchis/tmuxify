@@ -57,6 +57,7 @@ Or standalone. Here's a oneliner.
 ```shell
 $ wget https://raw.githubusercontent.com/tonchis/tmuxify/master/bin/tmuxify && chmod +x tmuxify && sudo mv tmuxify /usr/local/bin
 ```
+You can pass options to tmux with the `TMUX_OPTS` environment variable if you need.
 
 ### Why?
 
