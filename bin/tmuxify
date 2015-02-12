@@ -1,9 +1,11 @@
 #! /bin/bash
 
-layout="$PWD/.tmuxify.layout"
+for file in {$PWD,$HOME}/.tmuxify.layout; do
+  test -f $file && layout=$file && break
+done
 
 if [[ ! -f $layout ]]; then
-  echo "File .tmuxify.layout not found. Create one first."
+  echo "Aborting. No $PWD/.tmuxify.layout nor $HOME/.tmuxify.layout found."
   exit 1
 fi
 

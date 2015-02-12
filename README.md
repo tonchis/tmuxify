@@ -35,6 +35,10 @@ You can also select which pane will have focus after attaching the session by ad
     git 2 rackup -p 8080
     vim 1 vim
 
+### Files
+
+`tmuxify` looks for a layout file in the current directory. If none is found it will default to `~/.tmuxify.layout`.
+
 ### Caveats
 
 1. The `.tmuxify.layout` file will need a `pane-number` even if the window has only one, like the `vim` example up there.
