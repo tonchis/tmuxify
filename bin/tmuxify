@@ -11,7 +11,7 @@ fi
 
 session=${1:-$(basename $PWD | tr . -)}
 
-if [[ -z $(tmux ls 2>/dev/null | grep "$session") ]]; then
+if [[ -z $(tmux ls -F "#{session_name}" 2>/dev/null | grep "^$session$") ]]; then
   tmux $TMUX_OPTS new-session -s $session -d
 else
   tmux $TMUX_OPTS attach -t $session
@@ -27,11 +27,11 @@ while read window pane command; do
     active_pane=$pane_number
   fi
 
-  if [[ -z $(tmux list-windows -t $session | grep "$window") ]]; then
+  if [[ -z $(tmux list-windows -t $session  -F "#{window_name}" | grep "^${window}$") ]]; then
     tmux new-window -a -t $session -n $window -c $PWD
   fi
 
-  if [[ -z $(tmux list-panes -t $session:$window | grep "$pane_number:") ]]; then
+  if [[ -z $(tmux list-panes -t $session:$window  -F "#{pane_index}" | grep "^${pane_number}$") ]]; then
     tmux split-window -t $session:$window
   fi
 
