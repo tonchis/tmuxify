@@ -48,7 +48,8 @@ done < $layout
 #
 #   set-option -g renumber-windows on
 #
-tmux kill-window -t $session:1
+
+tmux kill-window -t $session:$( tmux list-windows -t $session -F "#{window_index}" | head -n 1 )
 
 tmux select-window -t $session:$active_window
 
