@@ -59,7 +59,7 @@ brew tap tonchis/goodies && brew install tmuxify
 Or standalone. Here's a oneliner.
 
 ```shell
-$ wget https://raw.githubusercontent.com/tonchis/tmuxify/v1.2.0/bin/tmuxify && chmod +x tmuxify && sudo mv tmuxify /usr/local/bin
+$ wget https://raw.githubusercontent.com/tonchis/tmuxify/v1.2.1/bin/tmuxify && chmod +x tmuxify && sudo mv tmuxify /usr/local/bin
 ```
 You can pass options to tmux with the `TMUX_OPTS` environment variable if you need.
 
