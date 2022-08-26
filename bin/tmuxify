@@ -1,15 +1,15 @@
 #! /bin/bash
 
-for file in {$PWD,$HOME}/.tmuxify.layout; do
-  test -f $file && layout=$file && break
+for file in "${PWD}/.tmuxify.layout" "${HOME}/.tmuxify.layout"; do
+  test -f "${file}" && layout="${file}" && break
 done
 
-if [[ ! -f $layout ]]; then
-  echo "Aborting. No $PWD/.tmuxify.layout nor $HOME/.tmuxify.layout found."
+if [[ ! -f "${layout}" ]]; then
+  echo "Aborting. Neither $PWD/.tmuxify.layout nor $HOME/.tmuxify.layout found."
   exit 1
 fi
 
-session=${1:-$(basename $PWD | tr . -)}
+session=${1:-$(basename "$PWD" | tr " ." -)}
 
 if [[ -z $(tmux ls -F "#{session_name}" 2>/dev/null | grep "^$session$") ]]; then
   tmux $TMUX_OPTS new-session -s $session -d
